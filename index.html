@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RPG — Fiche Personnage v17.2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand"><div class="logo">🛡️</div><div>RPG Sheet</div></div>
+      <div class="actions">
+        <button id="btn-new" class="btn" type="button">Nouveau perso</button>
+        <button id="btn-import" class="btn" type="button">Importer JSON</button>
+        <button id="btn-export" class="btn primary" type="button">Exporter JSON</button>
+        <button id="btn-reset" class="btn danger" type="button">Réinitialiser</button>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="card">
+        <div class="bd">
+          <!-- Identité -->
+          <div class="row">
+            <div><label for="name">Nom</label><input id="name" type="text" placeholder="Ex: Éredan" /></div>
+            <div><label for="race">Race</label><input id="race" type="text" placeholder="Ex: Khajiit" /></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <!-- CLASSES -->
+          <div>
+            <div class="bar"><div><span class="pill">Classes</span></div><button id="add-class" class="btn" type="button">+ Ajouter une classe</button></div>
+            <div id="classes" class="list"></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <!-- PV/PM/Armure -->
+      <!-- PV/PM/Armure -->
+<div class="row-3">
+  <!-- Points de Vie -->
+  <div>
+    <label>Points de vie (PV)</label>
+    <div class="row-2tight">
+      <div>
+        <small class="muted">Actuel</small>
+        <div class="spin">
+          <button class="spin-btn" data-spin="hp.current" data-d="-1" type="button">−</button>
+          <input id="hp-current" type="number" min="0" step="1" placeholder="0" />
+          <button class="spin-btn" data-spin="hp.current" data-d="1" type="button">+</button>
+        </div>
+      </div>
+      <div>
+        <small class="muted">Max</small>
+        <div class="spin">
+          <button class="spin-btn" data-spin="hp.max" data-d="-1" type="button">−</button>
+          <input id="hp-max" type="number" min="0" step="1" placeholder="0" />
+          <button class="spin-btn" data-spin="hp.max" data-d="1" type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre de vie -->
+    <div class="bar-vital">
+      <div id="bar-hp" class="bar-inner hp"></div>
+    </div>
+  </div>
+
+  <!-- Points de Mana -->
+  <div>
+    <label>Points de mana (PM)</label>
+    <div class="row-2tight">
+      <div>
+        <small class="muted">Actuel</small>
+        <div class="spin">
+          <button class="spin-btn" data-spin="mana.current" data-d="-1" type="button">−</button>
+          <input id="mana-current" type="number" min="0" step="1" placeholder="0" />
+          <button class="spin-btn" data-spin="mana.current" data-d="1" type="button">+</button>
+        </div>
+      </div>
+      <div>
+        <small class="muted">Max</small>
+        <div class="spin">
+          <button class="spin-btn" data-spin="mana.max" data-d="-1" type="button">−</button>
+          <input id="mana-max" type="number" min="0" step="1" placeholder="0" />
+          <button class="spin-btn" data-spin="mana.max" data-d="1" type="button">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre de mana -->
+    <div class="bar-vital">
+      <div id="bar-mana" class="bar-inner mana"></div>
+    </div>
+  </div>
+
+  <!-- Armure -->
+  <div>
+    <label for="armor">Armure</label>
+    <div class="spin">
+      <button class="spin-btn" data-spin="armor" data-d="-1" type="button">−</button>
+      <input id="armor" type="number" min="0" step="1" placeholder="0" />
+      <button class="spin-btn" data-spin="armor" data-d="1" type="button">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+
+          <!-- Attributs -->
+          <div>
+            <div class="bar"><div><span class="pill">Attributs</span> <span class="muted">(bonus d’équipement)</span></div></div>
+            <div id="stats-grid" class="stats-grid"></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <!-- Compétences -->
+          <div>
+            <div class="bar"><div><span class="pill">Compétences</span></div><button id="add-skill" class="btn" type="button">+ Ajouter une compétence</button></div>
+            <div id="skills" class="list"></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <!-- Inventaire -->
+          <div>
+            <div class="bar"><div><span class="pill">Inventaire</span></div><button id="add-item" class="btn" type="button">+ Ajouter un objet</button></div>
+            <div id="inventory" class="list"></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <!-- Équipement (grille 3x3 centrée) -->
+          <div class="equip-section" id="equip-section">
+            <div class="bar"><div><span class="pill">Équipement</span> <span class="muted">(grille 3×3)</span></div></div>
+            <!-- Inline confirm (au-dessus de la grille) -->
+            <div id="equip-inline-confirm" class="inline-confirm hidden" role="alertdialog" aria-live="assertive">
+              <div class="inline-confirm-msg" id="equip-inline-message"></div>
+              <div class="inline-confirm-actions">
+                <button id="equip-inline-yes" class="btn primary" type="button">Remplacer</button>
+                <button id="equip-inline-no" class="btn danger" type="button">Annuler</button>
+              </div>
+            </div>
+            <div id="equip-grid" class="equip-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup de sélection de slot -->
+  <div id="equip-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="equip-modal-title">
+    <div class="modal-box">
+      <div class="modal-hd" id="equip-modal-title">⚙️ Équiper</div>
+      <div class="modal-body">
+        <div class="row">
+          <div><label>Objet</label><input id="modal-item-name" type="text" readonly /></div>
+          <div>
+            <label for="modal-slot">Emplacement</label>
+            <select id="modal-slot"></select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="modal-confirm" class="btn primary" type="button">Équiper</button>
+        <button id="modal-cancel" class="btn danger" type="button">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <input id="file" type="file" accept="application/json" hidden />
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

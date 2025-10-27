@@ -1,0 +1,142 @@
+:root{
+  --bg:#0f1117; --panel:#121829; --muted:#9aa4b2; --text:#e6e9ef; --primary:#00bfff; --border:#243047; --radius:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;background:linear-gradient(180deg,#0f1117 0%, #0b0d13 100%);color:var(--text)}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.logo{width:36px;height:36px;border-radius:10px;background:radial-gradient(120% 120% at 20% 20%,#1b263b 0%,#0f172a 55%,#0b1020 100%);display:grid;place-items:center;color:var(--primary);font-weight:900}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:#0f1524;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;transition:.2s;font-weight:600}
+.btn:hover{border-color:#35507a;transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(180deg,#0e2436,#0c1a2a);border-color:#1d3557;color:#d9efff}
+.btn.danger{border-color:#3d1f27;background:#1b0f12;color:#ffd7d7}
+
+.main{display:flex;justify-content:center}
+.card{width:min(100%, 980px);background:linear-gradient(180deg,#121829,#0f1423);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.card .bd{padding:18px}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.row-2tight{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:640px){.row,.row-3{grid-template-columns:1fr}.row-2tight{grid-template-columns:1fr}}
+label{font-size:12px;color:var(--muted);display:block;margin:8px 0 6px}
+input[type=text],input[type=number],select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0d1220;color:#e6e9ef;outline:none;transition:.15s;font-size:14px}
+input:focus,select:focus{border-color:#35507a}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:1fr .6fr .3fr 1fr auto auto;gap:10px;align-items:center;padding:10px;border:1px dashed #22304b;background:#0c1220;border-radius:10px}
+.item.inv{grid-template-columns:1fr .6fr .3fr 1fr auto auto}
+.icon-btn{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#0b1120;border:1px solid #22304b;color:#c9e6ff;cursor:pointer}
+.icon-btn:hover{border-color:#3b5d8a}
+.icon-btn.red{background:#220c10;border-color:#52232b;color:#ffb7c0}
+.icon-btn.red:hover{border-color:#7a2d38;color:#ffd4da}
+.icon-btn.sm{width:30px;height:30px}
+.muted{color:var(--muted)}
+.sep{height:1px;background:var(--border);margin:14px 0}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#0d2139;border:1px solid #1d3355;color:#a7d8ff;font-size:12px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+
+/* Stats grid */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.stats-grid{grid-template-columns:1fr}}
+.stat-box{border:1px dashed #22304b;background:#0c1220;border-radius:10px;padding:10px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.stat-label{color:#bcd2ee}
+.stat-values{display:flex;align-items:center;gap:10px}
+.stat-bonus{font-size:12px;color:#a7d8ff}
+.spin{display:flex;align-items:center;gap:8px}
+.spin-btn{width:36px;height:36px;border-radius:10px;border:1px solid #22304b;background:#0b1120;color:#c9e6ff;cursor:pointer}
+.spin-btn:hover{border-color:#3b5d8a}
+
+/* Equipment grid centered */
+.equip-section{display:flex;flex-direction:column;align-items:center}
+.equip-grid{width:min(100%, 560px);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 auto}
+.equip-slot{border:1px dashed #22304b;background:#0c1220;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.equip-top{display:flex;align-items:center;justify-content:space-between}
+.equip-title{color:#bcd2ee;font-size:13px}
+/* Bonus d’équipement — version mobile friendly */
+.bonus-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.bonus-row select.bonus-attr {
+  flex: 1 1 60%;
+  min-width: 140px;
+  font-size: 14px;
+  padding: 6px 8px;
+}
+
+.bonus-row input.bonus-val {
+  width: 70px;
+  font-size: 14px;
+  text-align: center;
+  padding: 6px 4px;
+}
+
+.bonus-row .icon-btn.sm.red {
+  flex: 0 0 auto;
+  padding: 6px;
+  font-size: 14px;
+}
+
+/* Amélioration responsive (smartphones) */
+@media (max-width: 600px) {
+  .bonus-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .bonus-row select.bonus-attr,
+  .bonus-row input.bonus-val {
+    width: 100%;
+  }
+}
+
+.bonus-wrap{display:flex;flex-direction:column;gap:8px}
+
+/* Slot highlight */
+.slot-highlight{outline:3px solid rgba(0,191,255,0.45); outline-offset:2px}
+
+/* Modal (no overlay) */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;pointer-events:none}
+.modal .modal-box{pointer-events:auto;width:min(95%, 520px);background:#0c1220;border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:0 8px 32px rgba(0,0,0,.45)}
+.modal .modal-hd{font-weight:700;color:#a7d8ff;margin-bottom:8px}
+.modal .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
+.modal.hidden{display:none}
+.modal.show{display:flex}
+
+/* Inline confirm (above equipment grid) + fade-in */
+@keyframes fadeInConfirm{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.inline-confirm{width:min(100%, 560px);display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0c1220;border:1px solid var(--border);color:#e6e9ef;border-radius:10px;padding:10px;margin:6px auto 10px auto;opacity:1}
+.inline-confirm.show{animation:fadeInConfirm .15s ease-out}
+.inline-confirm-msg{font-size:14px}
+.inline-confirm-actions{display:flex;gap:10px}
+.hidden{display:none}
+
+/* --- Barres de vie et mana --- */
+.bar-vital {
+  width: 100%;
+  height: 14px;
+  background: #1a1c2b;
+  border-radius: 8px;
+  margin-top: 6px;
+  overflow: hidden;
+  border: 1px solid #243047;
+}
+
+.bar-inner {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.bar-inner.hp {
+  background: linear-gradient(90deg, #8b0000, #ff4040);
+}
+
+.bar-inner.mana {
+  background: linear-gradient(90deg, #0044ff, #00bfff);
+}
